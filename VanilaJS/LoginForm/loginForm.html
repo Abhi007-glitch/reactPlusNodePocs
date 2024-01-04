@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  
+</head>
+<body>
+     
+  <table style="margin: 50px;">
+    <form id="registerationForm">
+
+    <tr >
+      <td style="padding: 10px;">
+        <label for="first_name" >Name :</label>
+        <span style="padding-left: 10px;"> <input  id="first_name" name="first_name"  type="text" placeholder="Enter Name"> </input> </span>
+      </td>
+    </tr>
+
+    <tr>
+      <td style="padding: 10px;">
+        <label for="age" >Age :</label>
+        <span style="padding-left: 10px;"> <input  id="age" name="age" value="" type="number" placeholder=""> </input> </span>
+      </td>
+    </tr>
+    
+    <tr>
+      <td style="padding: 10px;">
+        <label for="gender" >Gender :</label>
+        <td>
+          <span style="padding-left: 10px;"> <input  id="male" name="gender" value="male" type="radio" placeholder=""> </input>  <label for="Male">Male</label></span>
+        <span style="padding-left: 10px;"> <input  id="female" name="gender" value="female" type="radio" placeholder=""> </input>  <label for="Male">Male</label></span>
+        </td>   
+      </td>
+      <td>
+        <label for=""></label>
+        </td>
+    </tr>
+
+    <tr>
+      <td style="padding:10px;">
+        <td>
+          <label for="education"></label>
+          <label for="10th" >10th</label>
+          <span><input type="checkbox" id="10th" name="education" value="10th" /></span>
+          <label for="12th">12th</label>
+          <span><input type="checkbox" id="12th" name="education" value="12th"/></span>
+        </td>
+       
+      </td>
+    </tr>
+    
+
+    <tr>
+      <td style="padding: 10px;">
+        <label for="Email" >Email :</label>
+        <span style="padding-left: 10px;"> <input  id="email" name="email" value="" type="email" placeholder="Enter Email"> </input> </span>
+      </td>
+    </tr>
+
+    <tr>
+      <td style="padding: 10px;">
+        <label for="password" >Password :</label>
+        <span style="padding-left: 10px;"> <input  id="password" name="password" value="" type="password" placeholder="Enter Password"/> </input> </span>
+      </td>
+    </tr>
+
+    <tr>
+      <td style="padding: 10px;">
+        <label for="conformPass" >Confirm Password :</label>
+        <span style="padding-left: 10px;"> <input  id="conformPass" name="conformPass" value="" type="conformPass" placeholder="Re-enter password"/> </input> </span>
+      </td>
+    </tr>
+
+
+    <tr>
+      <td style="padding: 10px">
+        <label for="DOB" >Date of Birth :</label>
+        <span><input type="date" id="DOB" name="DOB"  ></input></span>
+      </td>
+    </tr>
+    
+    <tr style="padding: 10px">
+      <td>
+        <span style="margin-left: 10px; background-color:cadetblue;"><input type="submit">  </input></span>
+      </td>
+    
+    </tr>
+
+
+
+  </form>
+  </table>
+
+  <script>
+
+    const form = document.getElementById("registerationForm");
+    form.addEventListener("submit", (event) => {
+      event.preventDefault(); // Prevent default form submission
+      handleSubmit();
+    });
+        const handleSubmit=()=>{
+          
+          const name = document.getElementById("first_name").value;
+          const age = Number.parseInt(document.getElementById("age").value);
+          let gender = document.getElementsByName("gender"); // array of values;
+          let Gender="neutral";
+          for(var g in gender)
+          {
+            console.log(g);
+            if (g.checked)
+            {
+              Gender=g;
+            }
+          }
+          
+          let education = document.getElementsByName("education");
+          let qualifications =[];
+          for ( let e in education)
+          {
+            if (e.checked)
+            {
+              qualifications.push(e.value);
+            }
+          }
+    
+          let email = document.getElementById("email").value;
+          let password = document.getElementById("password").value;
+          let confirmPassword = document.getElementById("conformPass").value;
+        
+          let dateOfBirth = document.getElementById("DOB").value;
+    
+          let data = {
+            name:name,
+            age:age,
+            Gender:Gender,
+            qualifications:qualifications,
+            email:email,
+            password:password,
+            confirmPassword:confirmPassword,
+            dateOfBirth:dateOfBirth
+          }
+    
+          console.log(data);
+     
+         
+    
+      
+        }
+        
+        const validateConfirmPassword=(pass,confirmPass)=>
+        {
+          if (pass===confirmPass)
+          {
+            return true;
+          }
+          return false;
+        };
+        const validateName=(name)=>{
+          name = name.trim();
+          if (name.length==0)
+          {
+            return false;
+          }
+          else 
+          {
+            return true;
+          }
+        }
+    
+        function validateAge(age)
+        {
+           if (age<4 || age>40)
+            {
+              return false;
+            }
+            else{
+              return true;
+            }
+        }
+      </script>
+</body>
+</html>
